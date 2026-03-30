@@ -1,5 +1,5 @@
-import { spawn } from "bun";
 import { join } from "path";
+import { calculateGrade } from "./fuzzy";
 
 // ── Types ──
 type Buah = {
@@ -20,7 +20,6 @@ type BuahInput = {
 
 // ── Path ──
 const DB_PATH = join(import.meta.dir, "database.json");
-const PY_PATH = join(import.meta.dir, "fuzzy_engine.py");
 
 // ── Database ──
 async function readDB(): Promise<Buah[]> {
@@ -39,14 +38,7 @@ async function writeDB(data: Buah[]) {
 
 // ── AI ──
 async function getGrade(input: BuahInput) {
-  const py = spawn([
-    "python",
-    PY_PATH,
-    JSON.stringify({ umur: input.umur, rasa: input.rasa, kematangan: input.kematangan }),
-  ]);
-  const text = await new Response(py.stdout).text();
-  if (!text.trim()) throw new Error("Python tidak merespons");
-  return JSON.parse(text);
+  return calculateGrade(input.umur, input.rasa, input.kematangan);
 }
 
 // ── Validation ──
