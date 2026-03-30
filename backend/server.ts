@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { calculateGrade } from "./fuzzy";
+import { calculateGrade } from "./fuzzy.js";
 import { join } from "path";
 import { readFileSync, writeFileSync, existsSync } from "fs";
 
