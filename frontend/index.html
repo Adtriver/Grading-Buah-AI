@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grading Buah AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🍊 Grading Buah AI</h1>
+    <p class="subtitle">Sistem Fuzzy Inferensi — Grade A / B / C</p>
+
+    <div class="card">
+      <h2>Input Data Buah</h2>
+      <div class="form-group">
+        <label>Nama Buah</label>
+        <input type="text" id="nama" placeholder="cth: Jeruk, Apel, Mangga...">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Umur <span class="hint">(0–7 hari)</span></label>
+          <input type="number" id="umur" min="0" max="7" step="0.1" placeholder="hari">
+        </div>
+        <div class="form-group">
+          <label>Rasa <span class="hint">(0–10)</span></label>
+          <input type="number" id="rasa" min="0" max="10" step="0.1" placeholder="skor">
+        </div>
+        <div class="form-group">
+          <label>Kematangan <span class="hint">(0–100%)</span></label>
+          <input type="number" id="kematangan" min="0" max="100" step="1" placeholder="%">
+        </div>
+      </div>
+      <button onclick="gradekan()">🔍 Cek Grade</button>
+    </div>
+
+    <!-- Hasil -->
+    <div class="card result-card" id="result-card" style="display:none">
+      <h2>Hasil</h2>
+      <div class="result-main">
+        <div class="grade-badge" id="grade-badge">A</div>
+        <div class="result-info">
+          <p id="result-nama" class="result-nama"></p>
+          <p id="result-desc" class="result-desc"></p>
+        </div>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>μ Umur</h4>
+          <p>Baru: <span id="mu-baru">-</span></p>
+          <p>Sedang: <span id="mu-sedang">-</span></p>
+          <p>Lama: <span id="mu-lama">-</span></p>
+        </div>
+        <div class="detail-box">
+          <h4>μ Rasa</h4>
+          <p>Tawar: <span id="mu-tawar">-</span></p>
+          <p>Manis: <span id="mu-manis">-</span></p>
+          <p>Asam: <span id="mu-asam">-</span></p>
+        </div>
+        <div class="detail-box">
+          <h4>μ Kematangan</h4>
+          <p>Belum: <span id="mu-belum">-</span></p>
+          <p>Cukup: <span id="mu-cukup">-</span></p>
+          <p>Matang: <span id="mu-matang">-</span></p>
+        </div>
+        <div class="detail-box">
+          <h4>Firing Strength Final</h4>
+          <p>Grade A: <span id="alpha-a">-</span></p>
+          <p>Grade B: <span id="alpha-b">-</span></p>
+          <p>Grade C: <span id="alpha-c">-</span></p>
+          <p class="grade-sementara">Grade Sementara: <span id="grade-sementara">-</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
